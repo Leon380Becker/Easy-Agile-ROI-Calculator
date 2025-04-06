@@ -127,6 +127,8 @@ Server will start at `http://localhost:5000` and your frontend can talk to it vi
 
 ---
 
+## 🌐 Integration into Webflow
+
 ## ⚙️ Option A: Iframe Embed (Quick Start)
 
 Use this method if you want to embed the entire app via an iframe into a Webflow or other CMS site with minimal setup.
