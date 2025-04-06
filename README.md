@@ -1,5 +1,6 @@
 # 📊 Easy Agile ROI Calculator
 
+Live Demo: https://easy-agile-roi-calculator.netlify.app/
 Welcome! This project is a complete **React + Node.js** web application that allows users to:
 
 - Fill out a form and get ROI calculations
@@ -14,7 +15,7 @@ Welcome! This project is a complete **React + Node.js** web application that all
 | Project Part | GitHub Repository                                                                       |
 | ------------ | --------------------------------------------------------------------------------------- |
 | 💻 Frontend  | [Easy-Agile-ROI-Calculator](https://github.com/Leon380Becker/Easy-Agile-ROI-Calculator) |
-| 🔧 Backend   | [roi-backend](https://github.com/Leon380Becker/roi-backend)                             |
+| 🔧 Backend   | [Roi-backend](https://github.com/Leon380Becker/roi-backend)                             |
 
 ---
 
