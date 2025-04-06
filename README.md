@@ -33,6 +33,122 @@ You’re receiving the **raw React app source code** zipped, ready for:
 
 ---
 
+# 🌐 Webflow & HubSpot Integration Guide
+
+This guide explains how to embed the **Easy Agile ROI Calculator** into your existing Webflow website and connect form submissions to **HubSpot CMS**. It is designed for seamless marketing team handoff, centralized data capture, and CRM automation.
+
+---
+
+## 📦 Again, What's in the ZIP Package
+
+You received a ZIP archive that includes:
+
+- ✅ Fully customizable **React frontend source code**
+- ✅ A production-ready **Node.js backend (Express)**
+- 🔐 Environment variable templates (`env.txt`) to guide setup
+
+> Please rename:
+> - `env.txt` → `.env.local` (Frontend)
+> - `env.txt` → `.env` (Backend)
+
+Populate each with your actual credentials before deployment.
+
+---
+
+## 🖥️ Embedding in Webflow
+
+### ✅ Option A: Iframe Embed (Quick)
+
+1. Deploy the frontend (e.g. via Netlify, Vercel)
+2. Copy the public URL (e.g., `https://your-calculator.netlify.app`)
+3. In Webflow:
+   - Add an **Embed** element in your desired section
+   - Paste this code:
+
+```html
+<iframe 
+  src="https://your-calculator.netlify.app" 
+  width="100%" 
+  height="1200" 
+  style="border: none;">
+</iframe>
+
+### ⚙️ Option B: Full Code Embed (Advanced)
+Use this option for tighter design control or Webflow-native animations.
+
+Build the frontend app:
+
+bash
+Copy
+Edit
+npm run build
+Copy everything from /build
+
+In Webflow:
+
+Open Page Settings > Custom Code
+
+Paste the HTML, link to the JS/CSS
+
+Upload required assets to the Webflow asset library
+
+Update asset paths as needed
+
+⚠️ You may need Webflow’s Business hosting plan for this approach.
+
+📩 HubSpot CMS Integration
+You can also store submitted data in HubSpot CRM, in addition to MongoDB.
+
+🔧 Requirements
+HubSpot Portal ID
+
+HubSpot Form GUID
+
+HubSpot Private App Access Token (recommended)
+
+🧩 Backend Integration Example
+In your roi-backend/server.js:
+
+js
+Copy
+Edit
+const axios = require('axios');
+
+const sendToHubSpot = async (name, email) => {
+  const HUBSPOT_FORM_URL = 'https://api.hsforms.com/submissions/v3/integration/submit/YOUR_PORTAL_ID/YOUR_FORM_GUID';
+
+  const payload = {
+    fields: [
+      { name: 'firstname', value: name },
+      { name: 'email', value: email }
+    ]
+  };
+
+  try {
+    await axios.post(HUBSPOT_FORM_URL, payload, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log('✅ HubSpot submission successful.');
+  } catch (error) {
+    console.error('❌ HubSpot integration failed:', error.message);
+  }
+};
+Invoke this function after handling the form submission and PDF dispatch:
+
+js
+Copy
+Edit
+await sendToHubSpot(name, email);
+💼 Summary
+Feature	Supported	Details
+Webflow Iframe Embed	✅ Yes	Fastest setup using hosted calculator URL
+Webflow Code Embed	✅ Yes	Full control via build output (HTML, CSS, JS)
+HubSpot CRM Sync	✅ Yes	Send user name + email to HubSpot using Forms API
+MongoDB Storage	✅ Yes	Local database storage for internal reporting
+PDF Generation + Email	✅ Yes	Personalized PDF with branding sent to user email
+
 ## ⚙️ How to Run or Customize Locally
 
 ### 💻 1. Frontend Setup (React)
